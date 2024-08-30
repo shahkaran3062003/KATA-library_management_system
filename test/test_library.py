@@ -42,7 +42,7 @@ class TestLibrary(unittest.TestCase):
 
         self.assertRaises(Exception, borrow_book, '90909090')
 
-        self.asserRaise(Exception, borrow_book, '1234567890123')
+        self.assertRaises(Exception, borrow_book, '1234567890123')
 
 
 if __name__ == '__main__':

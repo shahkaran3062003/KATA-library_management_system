@@ -17,6 +17,7 @@ class Book:
         self.title = title
         self.author = author
         self.year: int = int(year)
+        self.is_borrowed = False
 
 
 books = []
@@ -31,8 +32,8 @@ def add_book(book):
 def borrow_book(isbn):
     """This function takes isbn number of book and return if book is available if not then raise error"""
     for book in books:
-        if (book.isbn == isbn):
-
+        if (book.isbn == isbn and not book.is_borrowed):
+            book.is_borrowed = True
             return book
     raise Exception("Book not available in library.")
 
