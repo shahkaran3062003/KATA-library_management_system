@@ -1,10 +1,22 @@
 class Book:
     # Book class holding all essential parts of Book like isbn number, author, title and publish year.
-    def __init__(self, isbn, title, author, year):
+    def __init__(self, isbn: str, title: str, author: str, year: str):
+
+        if (len(isbn) != 13):
+            raise ValueError("ISBN Length should be of 13.")
+        if (not isbn.isnumeric()):
+            raise ValueError("ISBN Should be a number.")
+
+        if (not year.isnumeric()):
+            raise ValueError("Year Should be a number.")
+
+        if (len(year) != 4):
+            raise ValueError("Year should be between of 1000 - 9999")
+
         self.isbn = isbn
         self.title = title
         self.author = author
-        self.year = year
+        self.year: int = int(year)
 
 
 books = []
@@ -27,10 +39,13 @@ def main():
             isbn = input("Book ISBN : ")
             title = input("Book Title : ")
             author = input("Book Author : ")
-            year = int(input("Book Publish Year : "))
-            book = Book(isbn, title, author, year)
-            add_book(book)
-            print("New book added to library!!!")
+            year = input("Book Publish Year : ")
+            try:
+                book = Book(isbn, title, author, year)
+                add_book(book)
+                print("New book added to library!!!")
+            except ValueError as e:
+                print(e)
 
         elif user_input == 'e':
             break

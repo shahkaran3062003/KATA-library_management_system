@@ -5,8 +5,8 @@ from library import add_book, Book
 class TestLibrary(unittest.TestCase):
 
     def setUp(self):
-        self.book_1 = Book('123456789', 'Learn Python', 'xyz', 2024)
-        self.book_2 = Book('123456788', 'Learn Python 2', 'xyz', 2024)
+        self.book_1 = Book('1234567890123', 'Learn Python', 'xyz', '2024')
+        self.book_2 = Book('1234567880123', 'Learn Python 2', 'xyz', '2024')
 
     def tearDown(self):
         pass
@@ -17,10 +17,19 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(add_book(self.book_2), [self.book_1, self.book_2])
 
     def test_book_class(self):
-        book_3 = Book('fjdlfjlksd', 'fjdlksjfsdkl', 'dfjlkdslkfads', 'flkdsf')
+        book_3 = Book('1234567890123', 'fjdlksjfsdkl', 'dfjlkdslkfads', '2024')
+
+        self.assertRaises(ValueError, Book,
+                          'fdksfjl', 'fdsajklf', 'fkljdsljf', '2023')
+        self.assertRaises(ValueError, Book,
+                          '123456', 'fdsajklf', 'fkljdsljf', '2023')
+        self.assertRaises(ValueError, Book,
+                          '1234567890123', 'fdsajklf', 'fkljdsljf', 'fdsaf')
+        self.assertRaises(ValueError, Book,
+                          '1234567890123', 'fdsajklf', 'fkljdsljf', '200')
+        self.assertRaises(ValueError, Book,
+                          '1234567890123', 'fdsajklf', 'fkljdsljf', '10001')
         self.assertIsInstance(book_3.isbn, str)
-        self.assertIsInstance(book_3.title, str)
-        self.assertIsInstance(book_3.author, str)
         self.assertIsInstance(book_3.year, int)
         self.assertGreaterEqual(book_3.year, 999)
         self.assertLessEqual(book_3.year, 9999)
