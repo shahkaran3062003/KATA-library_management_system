@@ -32,8 +32,9 @@ def borrow_book(isbn):
     """This function takes isbn number of book and return if book is available if not then raise error"""
     for book in books:
         if (book.isbn == isbn):
+
             return book
-    return 0
+    raise Exception("Book not available in library.")
 
 
 def main():

@@ -37,6 +37,7 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(len(book_3.isbn), 13)
 
     def test_borrow_book(self):
+        add_book(Book('1234567890123', 'xyz', 'xyz', '2024'))
         self.assertIsNotNone(borrow_book(isbn='1234567890123'))
 
         self.assertRaises(Exception, borrow_book, '90909090')
