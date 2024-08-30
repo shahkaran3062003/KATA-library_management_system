@@ -1,18 +1,20 @@
 import unittest
-from library import add_book
+from library import add_book, Book
 
 
 class TestLibrary(unittest.TestCase):
 
+    def setUp(self):
+        self.book_1 = Book('123456789', 'Learn Python', 'xyz', 2024)
+        self.book_2 = Book('123456788', 'Learn Python 2', 'xyz', 2024)
+
+    def tearDown(self):
+        pass
+
     def test_add_book(self):
-        book_1 = {'isbn': '123456789', 'title': 'Learn Python',
-                  'author': 'xyz', 'year': 2024}
 
-        book_2 = {'isbn': '123456788', 'title': 'Learn Python 2',
-                  'author': 'xyz', 'year': 2024}
-
-        self.assertEqual(add_book(book_1), [book_1])
-        self.assertEqual(add_book(book_2), [book_1, book_2])
+        self.assertEqual(add_book(self.book_1), [self.book_1])
+        self.assertEqual(add_book(self.book_2), [self.book_1, self.book_2])
 
 
 if __name__ == '__main__':
