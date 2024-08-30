@@ -39,6 +39,8 @@ class TestLibrary(unittest.TestCase):
     def test_borrow_book(self):
         self.assertIsNotNone(borrow_book(isbn='1234567890123'))
 
+        self.assertRaises(Exception, borrow_book, '90909090')
+
 
 if __name__ == '__main__':
     unittest.main()
