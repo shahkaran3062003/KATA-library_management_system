@@ -23,25 +23,30 @@ class Book:
 books = []
 
 
-def add_book(book):
-    """This function take Book class object as parameter and store in list right now and return books list"""
-    books.append(book)
-    return books
+class Library:
+    def __init__(self):
+        self.books = []
 
+    def add_book(self, book):
+        """This function take Book class object as parameter and store in list right now and return books list"""
+        self.books.append(book)
+        return books
 
-def borrow_book(isbn):
-    """This function takes isbn number of book and return if book is available if not then raise error"""
-    for book in books:
-        if (book.isbn == isbn and not book.is_borrowed):
-            book.is_borrowed = True
-            return book
-    raise Exception("Book not available in library.")
+    def borrow_book(self, isbn):
+        """This function takes isbn number of book and return if book is available if not then raise error"""
+        for book in self.books:
+            if (book.isbn == isbn and not book.is_borrowed):
+                book.is_borrowed = True
+                return book
+        raise Exception("Book not available in library.")
 
 
 def main():
     user_input = None
+    myLibarary = Library()
     while True:
         print("1) Add Book")
+        print("2) Borrow Book")
         print("e) exit")
         user_input = input("Enter your choice : ")
 
@@ -52,13 +57,28 @@ def main():
             year = input("Book Publish Year : ")
             try:
                 book = Book(isbn, title, author, year)
-                add_book(book)
+                myLibarary.add_book(book)
                 print("New book added to library!!!")
             except ValueError as e:
                 print(e)
 
+        elif user_input == '2':
+            isbn = input("Book ISBN : ")
+
+            try:
+                book = myLibarary.borrow_book(isbn)
+                print(f"ISBN : {book.isbn}")
+                print(f"Title : {book.title}")
+                print(f"Author : {book.auther}")
+                print(f"Publish Year : {book.year}")
+            except Exception as e:
+                print(e)
+
         elif user_input == 'e':
             break
+
+        else:
+            print("Invalid input...")
 
 
 if __name__ == '__main__':
