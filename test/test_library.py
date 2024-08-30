@@ -36,6 +36,9 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(book_3.isbn.isnumeric(), True)
         self.assertEqual(len(book_3.isbn), 13)
 
+    def test_borrow_book(self):
+        self.assertIsNotNone(borrwo_book(isbn='1234567890123'))
+
 
 if __name__ == '__main__':
     unittest.main()
