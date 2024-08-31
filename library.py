@@ -47,7 +47,7 @@ class Library:
                 else:
                     raise Exception("This book is not Borrowed...")
 
-        return 0
+        raise Exception(f"Book with isbn {isbn} is not available.")
 
 
 def main():
