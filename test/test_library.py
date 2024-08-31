@@ -119,6 +119,12 @@ class TestLibrary(unittest.TestCase):
         self.assertRaises(Exception, self.myLibrary.update_book,
                           'fdasf', 'C', 'Xyz', '2024')
 
+    def test_delete_book(self):
+        self.myLibrary.add_book(self.book_1)
+        self.myLibrary.add_book(self.book_2)
+        self.myLibrary.delete_book(self.book_1.isbn)
+        self.assertEqual(self.myLibrary.books, [self.book_2])
+
 
 if __name__ == '__main__':
     unittest.main()
