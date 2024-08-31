@@ -81,7 +81,6 @@ class Library:
         self.file = Library.read_file(filePath)
         if (self.file):
             book_data = json.load(self.file)
-            print("In Load Function")
             if (len(book_data) == 0):
                 self.books = []
             else:
