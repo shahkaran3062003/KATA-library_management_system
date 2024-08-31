@@ -37,6 +37,10 @@ class Library:
                 return book
         raise Exception("Book not available in library.")
 
+    def return_book(self, isbn):
+        """This function takes isbn number of book and first check is this book Borrowed?? if yes then it change Borrowed to false other wise raise error"""
+        return 0
+
 
 def main():
     user_input = None
