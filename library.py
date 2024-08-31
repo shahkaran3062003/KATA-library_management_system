@@ -55,7 +55,10 @@ class Library:
             if (not book.is_borrowed):
                 available_books_list.append(book)
 
-        return available_books_list
+        if not available_books_list:
+            raise Exception("No books are Availble...")
+        else:
+            return available_books_list
 
 
 def main():
