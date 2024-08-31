@@ -1,3 +1,6 @@
+import json
+
+
 class Book:
     # Book class holding all essential parts of Book like isbn number, author, title and publish year.
     def __init__(self, isbn: str, title: str, author: str, year: str):
@@ -38,11 +41,14 @@ class Library:
     def __init__(self):
         self.books = []
 
-    def __del__(self):
-        self.read_file.close()
-
     def read_file(filePath='books_data.json'):
-        return 0
+        import os
+        if not os.path.exists(filePath):
+            with open(filePath, 'w') as f:
+                json.dump([], f)
+        else:
+            file = open(filePath)
+        return file
 
     def add_book(self, book):
         """This function take Book class object as parameter and store in list right now and return books list

@@ -14,6 +14,7 @@ class TestLibrary(unittest.TestCase):
 
     def test_read_file(self):
         self.assertIsNotNone(Library.read_file('test_book_data.json'))
+        self.assertTrue(Library.read_file('test_book_data.json'))
 
     def test_add_book(self):
         duplicate_book = Book('1234567890123', 'Learn C++', 'xyz', '2024')
