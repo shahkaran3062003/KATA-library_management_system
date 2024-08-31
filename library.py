@@ -95,6 +95,8 @@ def main():
                 print("New book added to library!!!")
             except ValueError as e:
                 print(e)
+            except Exception as e:
+                print(e)
 
         elif user_input == '2':
             isbn = input("Book ISBN : ")
