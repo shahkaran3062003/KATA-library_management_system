@@ -57,6 +57,8 @@ class TestLibrary(unittest.TestCase):
         self.assertRaises(
             Exception, self.myLibrary.return_book, '1234567880123')
 
+        self.assertRaises(Exception, self.myLibrary.return_book, '')
+
 
 if __name__ == '__main__':
     unittest.main()
