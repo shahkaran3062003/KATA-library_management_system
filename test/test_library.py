@@ -131,6 +131,11 @@ class TestLibrary(unittest.TestCase):
         self.assertRaises(
             Exception, self.myLibrary.delete_book, "434234234234")
 
+        self.myLibrary.borrow_book(self.book_2.isbn)
+
+        self.assertRaises(
+            Exception, self.myLibrary.delete_book, self.book_2.isbn)
+
 
 if __name__ == '__main__':
     unittest.main()

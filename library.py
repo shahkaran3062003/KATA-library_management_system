@@ -188,6 +188,7 @@ def main():
         print("3) Return Book")
         print("4) Available Books")
         print("5) Update Book")
+        print("6) Remove Book")
         print("e) exit")
         user_input = input("Enter your choice : ")
 
@@ -247,6 +248,17 @@ def main():
             except ValueError as e:
                 print(e)
 
+            except Exception as e:
+                print(e)
+
+        elif user_input == '6':
+            try:
+                isbn = input("Enter Book ISBN : ")
+                deleted_book = myLibarary.delete_book(isbn)
+                print("Book Removed Successfully!!!")
+                print("Removed Book : ")
+                deleted_book.show_book()
+                del deleted_book
             except Exception as e:
                 print(e)
 
