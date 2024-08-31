@@ -56,6 +56,7 @@ def main():
     while True:
         print("1) Add Book")
         print("2) Borrow Book")
+        print("3) Return Book")
         print("e) exit")
         user_input = input("Enter your choice : ")
 
@@ -78,8 +79,17 @@ def main():
                 book = myLibarary.borrow_book(isbn)
                 print(f"ISBN : {book.isbn}")
                 print(f"Title : {book.title}")
-                print(f"Author : {book.auther}")
+                print(f"Author : {book.author}")
                 print(f"Publish Year : {book.year}")
+                print("Book Borrowed Successfully!!!")
+            except Exception as e:
+                print(e)
+
+        elif user_input == '3':
+            isbn = input("Enter Book ISBN : ")
+            try:
+                if (myLibarary.return_book(isbn)):
+                    print("Book Return Successfully!!!")
             except Exception as e:
                 print(e)
 
