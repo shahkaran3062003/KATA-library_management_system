@@ -66,9 +66,11 @@ class TestLibrary(unittest.TestCase):
         new_library.add_book(self.book_2)
 
         self.assertIsNotNone(self.myLibrary.available_books())
-
         self.assertEqual(new_library.available_books(),
                          [self.book_1, self.book_2])
+
+        new_library.borrow_book(self.book_1.isbn)
+        self.assertEqual(new_library.available_books(), [self.book_2])
 
 
 if __name__ == '__main__':
