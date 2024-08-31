@@ -165,6 +165,18 @@ class Library:
                 return book
         raise Exception(f"Book with isbn {isbn} is not available.")
 
+    def delete_book(self, isbn):
+        """This function delete given isbn number book from library
+        Parameter : isbn
+        Return : deleted book object
+        """
+        for book in self.books:
+            if book.isbn == isbn:
+                delete_book = book
+                self.books.remove(delete_book)
+                return delete_book
+        raise Exception(f"Book with isbn {isbn} is not available.")
+
 
 def main():
     user_input = None
