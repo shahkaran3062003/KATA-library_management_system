@@ -53,6 +53,10 @@ class TestLibrary(unittest.TestCase):
         self.myLibrary.borrow_book(isbn=self.book_1.isbn)
         self.assertTrue(self.myLibrary.return_book(isbn='1234567890123'))
 
+        self.myLibrary.add_book(self.book_2)
+        self.assertRaises(
+            Exception, self.myLibrary.return_book, '1234567880123')
+
 
 if __name__ == '__main__':
     unittest.main()
