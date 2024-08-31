@@ -5,7 +5,8 @@ from library import Library, Book
 class TestLibrary(unittest.TestCase):
 
     def setUp(self):
-        self.myLibrary = Library()
+        self.TEST_FILE_PATH = 'test_book_data.json'
+        self.myLibrary = Library(self.TEST_FILE_PATH)
         self.book_1 = Book('1234567890123', 'Learn Python', 'xyz', '2024')
         self.book_2 = Book('1234567880123', 'Learn Python 2', 'xyz', '2024')
 
@@ -13,11 +14,12 @@ class TestLibrary(unittest.TestCase):
         pass
 
     def test_read_file(self):
-        self.assertIsNotNone(Library.read_file('test_book_data.json'))
-        self.assertTrue(Library.read_file('test_book_data.json'))
+        self.assertIsNotNone(Library.read_file(self.TEST_FILE_PATH))
+        self.assertTrue(Library.read_file(self.TEST_FILE_PATH))
 
     def test_load_data(self):
-        self.assertIsNone(Library.load_data())
+        self.assertIsNotNone(self.myLibrary.load_data(self.TEST_FILE_PATH))
+        self.assertTrue(self.myLibrary.load_data(self.TEST_FILE_PATH))
 
     def test_add_book(self):
         duplicate_book = Book('1234567890123', 'Learn C++', 'xyz', '2024')
@@ -71,7 +73,7 @@ class TestLibrary(unittest.TestCase):
             Exception, self.myLibrary.return_book, '1234567890123')
 
     def test_available_books(self):
-        new_library = Library()
+        new_library = Library(self.TEST_FILE_PATH)
         new_library.add_book(self.book_1)
         new_library.add_book(self.book_2)
 

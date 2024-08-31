@@ -38,17 +38,42 @@ class Book:
 
 
 class Library:
-    def __init__(self):
+    def __init__(self, filePath):
         self.books = []
+        self.load_data(filePath)
 
     def read_file(filePath='books_data.json'):
+        """This class function read JSON file and return file object if file not found then it create new file
+        Parameter = file path of json file
+        Return = file object to read
+        """
         import os
         if not os.path.exists(filePath):
             with open(filePath, 'w') as f:
                 json.dump([], f)
-        else:
-            file = open(filePath)
+
+        file = open(filePath)
         return file
+
+    def load_data(self, filePath):
+        """This method loads all books data from JSON file
+        Parameter : file path of json file
+        Return : True or False
+        """
+        file = Library.read_file(filePath)
+        if (file):
+            book_data = json.load(file)
+            if (len(book_data) == 0):
+                self.books = []
+            else:
+                for book in book_data:
+                    book_obj = Book(book['isbn'], book['title'],
+                                    book['author'], book['year'])
+                    self.books.append(book_obj)
+            print(self.books)
+            return True
+        else:
+            return False
 
     def add_book(self, book):
         """This function take Book class object as parameter and store in list right now and return books list
@@ -106,7 +131,8 @@ class Library:
 
 def main():
     user_input = None
-    myLibarary = Library()
+    BOOK_FILE_PATH = 'books_data.json'
+    myLibarary = Library(BOOK_FILE_PATH)
     while True:
         print("1) Add Book")
         print("2) Borrow Book")
