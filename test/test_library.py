@@ -13,10 +13,13 @@ class TestLibrary(unittest.TestCase):
         pass
 
     def test_add_book(self):
+        duplicate_book = Book('1234567890123', 'Learn C++', 'xyz', '2024')
 
         self.assertEqual(self.myLibrary.add_book(self.book_1), [self.book_1])
         self.assertEqual(self.myLibrary.add_book(
             self.book_2), [self.book_1, self.book_2])
+
+        self.assertRaises(Exception, self.myLibrary.add_book, duplicate_book)
 
     def test_book_class(self):
         book_3 = Book('1234567890123', 'fjdlksjfsdkl', 'dfjlkdslkfads', '2024')
