@@ -49,6 +49,9 @@ class TestLibrary(unittest.TestCase):
 
     def test_return_book(self):
         self.assertIsNotNone(self.myLibrary.return_book(isbn='1234567890123'))
+        self.myLibrary.add_book(self.book_1)
+        self.myLibrary.borrow_book(isbn=self.book_1.isbn)
+        self.assertTrue(self.myLibrary.return_book(isbn='1234567890123'))
 
 
 if __name__ == '__main__':
