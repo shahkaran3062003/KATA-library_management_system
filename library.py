@@ -34,6 +34,10 @@ class Library:
 
     def add_book(self, book):
         """This function take Book class object as parameter and store in list right now and return books list"""
+        for library_book in self.books:
+            if library_book.isbn == book.isbn:
+                raise Exception(
+                    f"Book with ISBN {book.isbn} is already exist in library.")
         self.books.append(book)
         return self.books
 
