@@ -1,9 +1,9 @@
 [
   {
     "isbn": "1234567890123",
-    "title": "Python",
-    "author": "Xyz",
-    "year": "2022",
+    "title": "C++",
+    "author": "Karan",
+    "year": "2024",
     "is_borrowed": false
   }
 ]

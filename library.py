@@ -149,6 +149,10 @@ class Library:
             return available_books_list
 
     def update_book(self, isbn, title, author, year):
+        """This function update given isbn number book data and chech year validation too.
+        Parameter : isbn, new title, new author, new year
+        Return : updated Book object
+        """
         for book in self.books:
             if (book.isbn == isbn):
                 if (not year.isnumeric()):
@@ -158,7 +162,7 @@ class Library:
                 book.title = title
                 book.author = author
                 book.year = int(year)
-                return True
+                return book
         raise Exception(f"Book with isbn {isbn} is not available.")
 
 
@@ -171,6 +175,7 @@ def main():
         print("2) Borrow Book")
         print("3) Return Book")
         print("4) Available Books")
+        print("5) Update Book")
         print("e) exit")
         user_input = input("Enter your choice : ")
 
@@ -214,6 +219,22 @@ def main():
                 for i, book in enumerate(available_books):
                     print(f"Book {i+1}")
                     book.show_book()
+            except Exception as e:
+                print(e)
+
+        elif user_input == '5':
+            try:
+                isbn = input("Enter Book ISBN : ")
+                title = input("Enter New Title : ")
+                author = input("Enter New Author : ")
+                year = input("Enter New Year : ")
+                book = myLibarary.update_book(isbn, title, author, year)
+                print("Book Updated Successfully!!!")
+                print("New Book : ")
+                book.show_book()
+            except ValueError as e:
+                print(e)
+
             except Exception as e:
                 print(e)
 

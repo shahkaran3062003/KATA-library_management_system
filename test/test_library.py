@@ -109,6 +109,16 @@ class TestLibrary(unittest.TestCase):
         self.assertIsNotNone(self.myLibrary.update_book(
             self.book_1.isbn, "C++", "XYZ", "2024"))
 
+        self.assertEqual(self.myLibrary.update_book(
+            self.book_2.isbn, 'C', "Xyz", "2024").to_dict(), Book(self.book_2.isbn, "C", "Xyz", "2024").to_dict())
+
+        self.assertRaises(Exception, self.myLibrary.update_book,
+                          '1111111111', 'C', 'Xyz', '2024')
+        self.assertRaises(Exception, self.myLibrary.update_book,
+                          '1111111111', 'C', 'Xyz', 'fsdfsd')
+        self.assertRaises(Exception, self.myLibrary.update_book,
+                          'fdasf', 'C', 'Xyz', '2024')
+
 
 if __name__ == '__main__':
     unittest.main()
