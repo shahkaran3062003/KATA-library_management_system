@@ -1,5 +1,6 @@
 import unittest
 from library import Library, Book
+import json
 
 
 class TestLibrary(unittest.TestCase):
@@ -16,6 +17,15 @@ class TestLibrary(unittest.TestCase):
     def test_read_file(self):
         self.assertIsNotNone(Library.read_file(self.TEST_FILE_PATH))
         self.assertTrue(Library.read_file(self.TEST_FILE_PATH))
+
+    def test_write_file(self):
+        new_library = Library(self.TEST_FILE_PATH)
+        new_library.add_book(self.book_1)
+        new_library.add_book(self.book_2)
+        del new_library
+        with open(self.TEST_FILE_PATH) as f:
+            file_data = json.load(f)
+            self.assertEqual(file_data, [self.book_1, self.book_2])
 
     def test_load_data(self):
         self.assertIsNotNone(self.myLibrary.load_data(self.TEST_FILE_PATH))

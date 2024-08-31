@@ -40,6 +40,7 @@ class Book:
 class Library:
     def __init__(self, filePath):
         self.books = []
+        self.filePath = filePath
         self.load_data(filePath)
 
     def read_file(filePath='books_data.json'):
@@ -60,9 +61,9 @@ class Library:
         Parameter : file path of json file
         Return : True or False
         """
-        file = Library.read_file(filePath)
-        if (file):
-            book_data = json.load(file)
+        self.file = Library.read_file(filePath)
+        if (self.file):
+            book_data = json.load(self.file)
             if (len(book_data) == 0):
                 self.books = []
             else:
