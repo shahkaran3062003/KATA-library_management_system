@@ -50,7 +50,12 @@ class Library:
         raise Exception(f"Book with isbn {isbn} is not available.")
 
     def available_books(self):
-        return 0
+        available_books_list = []
+        for book in self.books:
+            if (not book.is_borrowed):
+                available_books_list.append(book)
+
+        return available_books_list
 
 
 def main():
