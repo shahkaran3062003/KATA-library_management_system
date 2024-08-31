@@ -61,7 +61,7 @@ class TestLibrary(unittest.TestCase):
             Exception, self.myLibrary.return_book, '1234567890123')
 
     def test_available_books(self):
-        self.assertIsNotNone(self.myLibrary.available_books)
+        self.assertIsNotNone(self.myLibrary.available_books())
 
 
 if __name__ == '__main__':

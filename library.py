@@ -49,6 +49,9 @@ class Library:
 
         raise Exception(f"Book with isbn {isbn} is not available.")
 
+    def available_books(self):
+        return 0
+
 
 def main():
     user_input = None
