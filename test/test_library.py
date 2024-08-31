@@ -106,7 +106,8 @@ class TestLibrary(unittest.TestCase):
     def test_update_book(self):
         self.myLibrary.add_book(self.book_1)
         self.myLibrary.add_book(self.book_2)
-        self.assertIsNotNone(self.myLibrary.update_book(isbn=self.book_1.isbn))
+        self.assertIsNotNone(self.myLibrary.update_book(
+            self.book_1.isbn, "C++", "XYZ", "2024"))
 
 
 if __name__ == '__main__':

@@ -148,6 +148,19 @@ class Library:
         else:
             return available_books_list
 
+    def update_book(self, isbn, title, author, year):
+        for book in self.books:
+            if (book.isbn == isbn):
+                if (not year.isnumeric()):
+                    raise ValueError("Year Should be a number.")
+                if (len(year) != 4):
+                    raise ValueError("Year should be between of 1000 - 9999")
+                book.title = title
+                book.author = author
+                book.year = int(year)
+                return True
+        raise Exception(f"Book with isbn {isbn} is not available.")
+
 
 def main():
     user_input = None
