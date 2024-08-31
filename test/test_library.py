@@ -61,7 +61,14 @@ class TestLibrary(unittest.TestCase):
             Exception, self.myLibrary.return_book, '1234567890123')
 
     def test_available_books(self):
+        new_library = Library()
+        new_library.add_book(self.book_1)
+        new_library.add_book(self.book_2)
+
         self.assertIsNotNone(self.myLibrary.available_books())
+
+        self.assertEqual(new_library.available_books(),
+                         [self.book_1, self.book_2])
 
 
 if __name__ == '__main__':
