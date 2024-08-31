@@ -103,6 +103,11 @@ class TestLibrary(unittest.TestCase):
         new_library.borrow_book(self.book_2.isbn)
         self.assertRaises(Exception, new_library.available_books)
 
+    def test_update_book(self):
+        self.myLibrary.add_book(self.book_1)
+        self.myLibrary.add_book(self.book_2)
+        self.assertIsNotNone(self.myLibrary.update_book(isbn=self.book_1.isbn))
+
 
 if __name__ == '__main__':
     unittest.main()
