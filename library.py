@@ -38,6 +38,12 @@ class Library:
     def __init__(self):
         self.books = []
 
+    def __del__(self):
+        self.read_file.close()
+
+    def read_file(filePath='books_data.json'):
+        return 0
+
     def add_book(self, book):
         """This function take Book class object as parameter and store in list right now and return books list
         Parameter : Book class object

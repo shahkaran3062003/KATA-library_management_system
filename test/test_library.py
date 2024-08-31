@@ -12,9 +12,8 @@ class TestLibrary(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_open_file_storage(self):
-        self.assertIsNotNone(
-            self.myLibrary.open_file_storage('test_data.json'))
+    def test_read_file(self):
+        self.assertIsNotNone(Library.read_file('test_book_data.json'))
 
     def test_add_book(self):
         duplicate_book = Book('1234567890123', 'Learn C++', 'xyz', '2024')
