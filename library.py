@@ -19,6 +19,14 @@ class Book:
         self.year: int = int(year)
         self.is_borrowed = False
 
+    def show_book(self):
+        print("-"*10)
+        print(f"ISBN : {self.isbn}")
+        print(f"Title : {self.title}")
+        print(f"Author : {self.author}")
+        print(f"Publication Year : {self.year}")
+        print("-"*10)
+
 
 class Library:
     def __init__(self):
@@ -68,6 +76,7 @@ def main():
         print("1) Add Book")
         print("2) Borrow Book")
         print("3) Return Book")
+        print("4) Available Books")
         print("e) exit")
         user_input = input("Enter your choice : ")
 
@@ -88,10 +97,7 @@ def main():
 
             try:
                 book = myLibarary.borrow_book(isbn)
-                print(f"ISBN : {book.isbn}")
-                print(f"Title : {book.title}")
-                print(f"Author : {book.author}")
-                print(f"Publish Year : {book.year}")
+                book.show_book()
                 print("Book Borrowed Successfully!!!")
             except Exception as e:
                 print(e)
@@ -101,6 +107,17 @@ def main():
             try:
                 if (myLibarary.return_book(isbn)):
                     print("Book Return Successfully!!!")
+            except Exception as e:
+                print(e)
+
+        elif user_input == '4':
+
+            try:
+                available_books = myLibarary.available_books()
+                print("List of Available Books : ")
+                for i, book in enumerate(available_books):
+                    print(f"Book {i+1}")
+                    book.show_book()
             except Exception as e:
                 print(e)
 
