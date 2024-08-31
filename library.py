@@ -172,6 +172,9 @@ class Library:
         """
         for book in self.books:
             if book.isbn == isbn:
+                if book.is_borrowed:
+                    raise Exception(
+                        f"This book is Borrow, so can't remove it.")
                 delete_book = book
                 self.books.remove(delete_book)
                 return delete_book
