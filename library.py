@@ -40,9 +40,12 @@ class Library:
     def return_book(self, isbn):
         """This function takes isbn number of book and first check is this book Borrowed?? if yes then it change Borrowed to false other wise raise error"""
         for book in self.books:
-            if book.isbn == isbn and book.is_borrowed:
-                book.is_borrowed = False
-                return True
+            if book.isbn == isbn:
+                if book.is_borrowed:
+                    book.is_borrowed = False
+                    return True
+                else:
+                    raise Exception("This book is not Borrowed...")
 
         return 0
 
