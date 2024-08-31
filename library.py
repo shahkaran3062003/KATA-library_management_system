@@ -2,8 +2,10 @@ class Book:
     # Book class holding all essential parts of Book like isbn number, author, title and publish year.
     def __init__(self, isbn: str, title: str, author: str, year: str):
 
-        if (len(isbn) != 13):
+        ISBN_LEN = 13
+        if (len(isbn) != ISBN_LEN):
             raise ValueError("ISBN Length should be of 13.")
+
         if (not isbn.isnumeric()):
             raise ValueError("ISBN Should be a number.")
 
@@ -20,6 +22,10 @@ class Book:
         self.is_borrowed = False
 
     def show_book(self):
+        """This function prints Book information to console. takes no parameter and not return anything.
+        Parameter : None
+        Return : None
+        """
         print("-"*10)
         print(f"ISBN : {self.isbn}")
         print(f"Title : {self.title}")
@@ -33,7 +39,10 @@ class Library:
         self.books = []
 
     def add_book(self, book):
-        """This function take Book class object as parameter and store in list right now and return books list"""
+        """This function take Book class object as parameter and store in list right now and return books list
+        Parameter : Book class object
+        Return : all books of Library
+        """
         for library_book in self.books:
             if library_book.isbn == book.isbn:
                 raise Exception(
@@ -42,7 +51,10 @@ class Library:
         return self.books
 
     def borrow_book(self, isbn):
-        """This function takes isbn number of book and return if book is available if not then raise error"""
+        """This function takes isbn number of book and return if book is available if not then raise error
+        Parameter : Book isbn number
+        Return : book class object or raise Exception
+        """
         for book in self.books:
             if (book.isbn == isbn and not book.is_borrowed):
                 book.is_borrowed = True
@@ -50,7 +62,10 @@ class Library:
         raise Exception("Book not available in library.")
 
     def return_book(self, isbn):
-        """This function takes isbn number of book and first check is this book Borrowed?? if yes then it change Borrowed to false other wise raise error"""
+        """This function takes isbn number of book and first check is this book Borrowed?? if yes then it change Borrowed to false other wise raise error
+        Parameter : Book isbn number
+        return : True or raise Exception
+        """
         for book in self.books:
             if book.isbn == isbn:
                 if book.is_borrowed:
@@ -62,6 +77,10 @@ class Library:
         raise Exception(f"Book with isbn {isbn} is not available.")
 
     def available_books(self):
+        """This function print all available books in library not including borrowed books.
+        Parameter : None
+        Return : None
+        """
         available_books_list = []
         for book in self.books:
             if (not book.is_borrowed):
