@@ -20,9 +20,6 @@ class Book:
         self.is_borrowed = False
 
 
-books = []
-
-
 class Library:
     def __init__(self):
         self.books = []
@@ -30,7 +27,7 @@ class Library:
     def add_book(self, book):
         """This function take Book class object as parameter and store in list right now and return books list"""
         self.books.append(book)
-        return books
+        return self.books
 
     def borrow_book(self, isbn):
         """This function takes isbn number of book and return if book is available if not then raise error"""
