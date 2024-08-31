@@ -12,20 +12,26 @@ class TestLibrary(unittest.TestCase):
         self.book_2 = Book('1234567880123', 'Learn Python 2', 'xyz', '2024')
 
     def tearDown(self):
-        pass
+        del self.myLibrary
+        with open(self.TEST_FILE_PATH, 'w') as wf:
+            json.dump([], wf)
 
     def test_read_file(self):
         self.assertIsNotNone(Library.read_file(self.TEST_FILE_PATH))
         self.assertTrue(Library.read_file(self.TEST_FILE_PATH))
 
-    def test_write_file(self):
+    def test_write_data(self):
         new_library = Library(self.TEST_FILE_PATH)
         new_library.add_book(self.book_1)
         new_library.add_book(self.book_2)
         del new_library
-        with open(self.TEST_FILE_PATH) as f:
-            file_data = json.load(f)
-            self.assertEqual(file_data, [self.book_1, self.book_2])
+        file = open(self.TEST_FILE_PATH)
+        if (file):
+            data = json.load(file)
+            self.assertEqual(
+                data, [self.book_1.to_dict(), self.book_2.to_dict()])
+
+        file.close()
 
     def test_load_data(self):
         self.assertIsNotNone(self.myLibrary.load_data(self.TEST_FILE_PATH))

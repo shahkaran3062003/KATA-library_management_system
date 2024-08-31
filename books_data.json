@@ -3,18 +3,7 @@
     "isbn": "1234567890123",
     "title": "Python",
     "author": "Xyz",
-    "year": "2024"
-  },
-  {
-    "isbn": "1234567890122",
-    "title": "Python",
-    "author": "Xyz",
-    "year": "2023"
-  },
-  {
-    "isbn": "1234567890121",
-    "title": "Python",
-    "author": "Xyz",
-    "year": "2024"
+    "year": "2022",
+    "is_borrowed": false
   }
 ]

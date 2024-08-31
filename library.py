@@ -3,7 +3,7 @@ import json
 
 class Book:
     # Book class holding all essential parts of Book like isbn number, author, title and publish year.
-    def __init__(self, isbn: str, title: str, author: str, year: str):
+    def __init__(self, isbn: str, title: str, author: str, year: str, is_borrowed=False):
 
         ISBN_LEN = 13
         if (len(isbn) != ISBN_LEN):
@@ -22,7 +22,7 @@ class Book:
         self.title = title
         self.author = author
         self.year: int = int(year)
-        self.is_borrowed = False
+        self.is_borrowed = is_borrowed
 
     def show_book(self):
         """This function prints Book information to console. takes no parameter and not return anything.
@@ -36,12 +36,29 @@ class Book:
         print(f"Publication Year : {self.year}")
         print("-"*10)
 
+    def to_dict(self):
+        book = {}
+        book['isbn'] = self.isbn
+        book['title'] = self.title
+        book['author'] = self.author
+        book['year'] = str(self.year)
+        book['is_borrowed'] = self.is_borrowed
+        return book
+
 
 class Library:
     def __init__(self, filePath):
         self.books = []
         self.filePath = filePath
         self.load_data(filePath)
+
+    def __del__(self):
+        data = []
+        for book in self.books:
+            book = book.to_dict()
+            data.append(book)
+        with open(self.filePath, 'w') as wf:
+            json.dump(data, wf)
 
     def read_file(filePath='books_data.json'):
         """This class function read JSON file and return file object if file not found then it create new file
@@ -64,16 +81,18 @@ class Library:
         self.file = Library.read_file(filePath)
         if (self.file):
             book_data = json.load(self.file)
+            print("In Load Function")
             if (len(book_data) == 0):
                 self.books = []
             else:
                 for book in book_data:
                     book_obj = Book(book['isbn'], book['title'],
-                                    book['author'], book['year'])
+                                    book['author'], book['year'], book['is_borrowed'])
                     self.books.append(book_obj)
-            print(self.books)
+            self.file.close()
             return True
         else:
+            self.file.close()
             return False
 
     def add_book(self, book):
